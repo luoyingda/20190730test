@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tabBox {
+            box-sizing: border-box;
+            margin: 20px auto;
+            width: 500px;
+            height: 300px;
+            border: 1px solid lawngreen;
+        }
+
+        #navBox {
+            list-style: none;
+            display: flex;
+        }
+
+        #navBox>li {
+            box-sizing: border-box;
+            position: relative;
+            top: 1px;
+            margin-left: 5px;
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid lightcoral;
+            cursor: pointer;
+        }
+
+        #navBox>li.active {
+            border-bottom: 1px solid white;
+        }
+
+        #tabBox>div {
+            display: none;
+            box-sizing: border-box;
+            margin-left: 5px;
+            height: 150px;
+            border: 1px solid lightcoral;
+        }
+
+        #tabBox>div.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="tabBox">
+        <ul id="navBox">
+            <li class="active">运动</li>
+            <li>读书</li>
+            <li>写作</li>
+        </ul>
+        <div class="active">这是第1个div</div>
+        <div>这是第2个div</div>
+        <div>这是第3个div</div>
+    </div>
+</body>
+<script>
+    var tabBox = document.getElementById('tabBox');
+    var navBox = document.getElementById('navBox');
+    var tabList = tabBox.getElementsByTagName('div');
+    var navList = navBox.getElementsByTagName('li');
+
+    for (var i = 0; i < navList.length; i++) {
+        navList[i].myIndex = i;
+        navList[i].onclick = function () {
+            changeIndex(this.myIndex);
+        }
+    }
+
+    function changeIndex(myIndex){
+        for(var i=0;i<navList.length;i++){
+            navList[i].className='';
+            tabList[i].className='';
+        }
+        navList[myIndex].className='active';
+        tabList[myIndex].className='active';
+    }
+</script>
+
+</html>
